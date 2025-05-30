@@ -1,0 +1,90 @@
+ 1. **Session Management**
+
+Why: Store user inputs and past validations to provide context-aware suggestions or skip redundant lookups.
+How:
+ Store user sessions in a dictionary or a light database (such as SQLite or Redis) with keys by session ID or user ID.
+ Cache previous queries and results.
+ Upon user submission of input, verify if it's already been validated and return cached data if it exists.
+
+Advantage: Quicker response times, customized experience, possibility to monitor user behavior.
+
+---
+
+ 2. **Interactive Conversational Flow**
+
+Why: Make the agent more conversational rather than a command-line interface.
+How:
+ Employ libraries such as `prompt_toolkit` or `cmd` in Python for interactive command-line interface.
+ Employ back-and-forth conversation where the agent requests clarification questions (e.g., "Do you want to validate a code or get suggestions?").
+ Employ basic NLP (e.g., keyword matching) to analyze user free-text commands.
+
+Benefit: Improved UX, can accept ambiguous inputs, more engaging.
+
+---
+
+ 3. **Live Data Updates without Redeployment**
+
+Why: HSN codes may change; need to refresh the master data without restarting or redeploying the agent.
+How:
+ Keep the Excel master file in a cloud storage or database.
+ Have a background thread or scheduler in your agent to periodically retrieve the updated data.
+ Reload the in-memory data without relaunching the entire app.
+
+Benefit: Agent always has latest data, maintenance-friendly.
+
+---
+
+4. **Data Quality Feedback**
+
+Why: Detect and mark inconsistencies or errors in the master dataset.
+How:
+ Add routines to scan the data for anomalies: missing descriptions, duplicate codes, invalid formats.
+ Offer a report or alert to the admin/user.
+
+Benefit: Aids in data integrity and agent response reliability.
+
+---
+
+5. **Batch Validation & Suggestions**
+
+Why: Enable users to enter multiple codes or descriptions simultaneously.
+How:
+ Support lists or CSV uploads.
+ Provide a batch report with individual results.
+
+Benefit: More convenient for bulk operations, saves time.
+
+---
+
+ 6. **Export Results**
+
+Why: Users might want to store validation or suggestion results.
+How:
+ Export as CSV, JSON, or PDF.
+ Offer an easy command or button to download.
+
+Benefit: Simpler record-keeping and sharing.
+
+---
+
+ 7. **Confidence Scores and Explanation**
+
+Why: Display the confidence of the agent regarding suggestions and the reasons it made those suggestions.
+How:
+ Offer matching scores (e.g., percentage similarity).
+ Offer description snippets or matching keywords.
+
+Benefit: Builds user trust in the system.
+
+---
+
+ 8. **Multilingual Support**
+
+Why: Users from different regions might want to query in different languages.
+How:
+ Integrate translation APIs or multilingual datasets.
+
+Benefit: Wider usability.
+
+---
+
